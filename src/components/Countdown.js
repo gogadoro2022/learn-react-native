@@ -10,11 +10,13 @@ export const Countdown = ({minutes = 0.5, isPaused, onProgress, onEnd}) => {
   const interval = React.useRef(null);
   const [millis, setMillis] = useState(null);
 
+  const reset = () => setMillis(minutesToMillis(minutes));
+
   const countDown = () => {
     setMillis(time => {
       if (time === 0) {
         clearInterval(interval.current);
-        onEnd();
+        onEnd(reset);
         return time;
       }
       const timeLeft = time - 1000;
@@ -54,6 +56,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: colors.white,
     padding: spacing.lg,
-    bacgroundColor: 'rgba(94, 132, 226, 0.3)',
+    backgroundColor: 'rgba(94, 132, 226, 0.3)',
   },
 });
