@@ -1,14 +1,15 @@
 import React from 'react';
-import {Text, View} from 'react-native';
 import {Searchbar} from 'react-native-paper';
 
 export const RestaurantsScreen = () => {
+  const [searchQuery, setSearchQuery] = React.useState('');
+
+  const onChangeSearch = query => setSearchQuery(query);
   return (
-    <View>
-      <View>
-        <Searchbar />
-      </View>
-      <Text>아하</Text>
-    </View>
+    <Searchbar
+      placeholder="Search"
+      onChangeText={onChangeSearch}
+      value={searchQuery}
+    />
   );
 };
